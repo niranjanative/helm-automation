@@ -1,0 +1,94 @@
+# Default values for cbp-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+network_policies:
+  ingress:
+    userprofilecrud-system-dev:
+      - adminservices-system-dev
+      - userprofileservices-system-dev
+    userprofileservices-system-dev:
+      - adminservices-system-dev
+      - commonservices-system-dev
+      - financeservices-system-dev
+      - frontendorchestration-system-dev
+    preapprovalcrud-system-dev:
+      - adminservices-system-dev
+      - commonservices-system-dev
+    preapprovalservices-system-dev:
+      - adminservices-system-dev
+      - commonservices-system-dev
+      - partnersorchestration-system-dev
+      - financeservices-system-dev
+      - frontendorchestration-system-dev
+    financecrud-system-dev:
+      - adminservices-system-dev
+      - commonservices-system-dev
+      - financeservices-system-dev
+    financeservices-system-dev:
+      - adminservices-system-dev
+      - commonservices-system-dev
+      - frontendorchestration-system-dev
+    commoncrud-system-dev:
+      - adminservices-system-dev
+      - commonservices-system-dev
+      - userprofileservices-system-dev
+      - frontendorchestration-system-dev
+    commonservices-system-dev:
+      - adminservices-system-dev
+      - partnersorchestration-system-dev
+      - userprofileservices-system-dev
+      - financeservices-system-dev
+      - frontendorchestration-system-dev
+    soaintegration-system-dev:
+      - commonservices-system-dev
+      - userprofileservices-system-dev
+      - financeservices-system-dev
+    ingressintegration-system-dev:
+      - userprofileservices-system-dev
+    retailprice-system-dev:
+      - frontendorchestration-system-dev
+    
+      
+  egress:
+    frontendorchestration-system-dev:
+      - commoncrud-system-dev
+      - userprofileservices-system-dev
+      - commonservices-system-dev
+      - preapprovalservices-system-dev
+      - retailprice-system-dev
+      - financeservices-system-dev
+    financeservices-system-dev:
+      - financecrud-system-dev
+      - commonservices-system-dev
+      - preapprovalservices-system-dev
+      - userprofileservices-system-dev
+      - soaintegration-system-dev
+    userprofileservices-system-dev:
+      - userprofilecrud-system-dev
+      - commoncrud-system-dev
+      - commonservices-system-dev
+      - soaintegration-system-dev
+      - ingressintegration-system-dev
+    partnersorchestration-system-dev:
+      - preapprovalservices-system-dev
+      - commonservices-system-dev
+    commonservices-system-dev:
+      - preapprovalcrud-system-dev
+      - commoncrud-system-dev
+      - userprofileservices-system-dev
+      - soaintegration-system-dev
+      - financecrud-system-dev
+      - financeservices-system-dev
+      - preapprovalservices-system-dev
+    adminservices-system-dev:
+      - userprofilecrud-system-dev
+      - userprofileservices-system-dev
+      - preapprovalcrud-system-dev
+      - preapprovalservices-system-dev
+      - financecrud-system-dev
+      - financeservices-system-dev
+      - commoncrud-system-dev
+      - commonservices-system-dev
+
+      

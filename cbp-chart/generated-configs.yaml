@@ -1,0 +1,389 @@
+---
+# Source: cbp-chart/templates/egress-network-policies.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: adminservices-system-dev-np
+  namespace: adminservices-system-dev
+spec:
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              userprofilecrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              userprofileservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              preapprovalcrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              preapprovalservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financecrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financeservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commoncrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Egress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: commonservices-system-dev-np
+  namespace: commonservices-system-dev
+spec:
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              preapprovalcrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commoncrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              userprofileservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              soaintegration-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financecrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financeservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              preapprovalservices-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Egress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: financeservices-system-dev-np
+  namespace: financeservices-system-dev
+spec:
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              financecrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              preapprovalservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              userprofileservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              soaintegration-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Egress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontendorchestration-system-dev-np
+  namespace: frontendorchestration-system-dev
+spec:
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              commoncrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              userprofileservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              preapprovalservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              retailprice-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financeservices-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Egress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: partnersorchestration-system-dev-np
+  namespace: partnersorchestration-system-dev
+spec:
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              preapprovalservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Egress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: userprofileservices-system-dev-np
+  namespace: userprofileservices-system-dev
+spec:
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              userprofilecrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commoncrud-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              soaintegration-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              ingressintegration-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Egress
+---
+# Source: cbp-chart/templates/ingress-network-policies.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: commoncrud-system-dev-np
+  namespace: commoncrud-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              adminservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              userprofileservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              frontendorchestration-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: commonservices-system-dev-np
+  namespace: commonservices-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              adminservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              partnersorchestration-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              userprofileservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financeservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              frontendorchestration-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: financecrud-system-dev-np
+  namespace: financecrud-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              adminservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financeservices-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: financeservices-system-dev-np
+  namespace: financeservices-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              adminservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              frontendorchestration-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingressintegration-system-dev-np
+  namespace: ingressintegration-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              userprofileservices-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: preapprovalcrud-system-dev-np
+  namespace: preapprovalcrud-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              adminservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: preapprovalservices-system-dev-np
+  namespace: preapprovalservices-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              adminservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              partnersorchestration-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financeservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              frontendorchestration-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: retailprice-system-dev-np
+  namespace: retailprice-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              frontendorchestration-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: soaintegration-system-dev-np
+  namespace: soaintegration-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              userprofileservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financeservices-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: userprofilecrud-system-dev-np
+  namespace: userprofilecrud-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              adminservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              userprofileservices-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: userprofileservices-system-dev-np
+  namespace: userprofileservices-system-dev
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              adminservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              commonservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              financeservices-system-dev: networking
+        - namespaceSelector:
+            matchLabels:
+              frontendorchestration-system-dev: networking
+  podSelector: {}
+  policyTypes:
+    - Ingress
